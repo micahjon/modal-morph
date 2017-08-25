@@ -4,10 +4,7 @@
  * 		ModalMorph('mm--contact', { trigger: yourButtonElement }).open();
  */
 
-// Once FLIP has been added to npm, this will be a simpler import. 
-// See open issue: https://github.com/GoogleChrome/flipjs/issues/11
-import FLIP from 'FLIP/src/flip';
-
+import FLIP from './src/FLIP';
 import createFocusTrap from 'focus-trap';
 
 /**
