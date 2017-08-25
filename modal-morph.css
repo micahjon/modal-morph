@@ -1,0 +1,75 @@
+/* Modal Morph library
+   ========================================================================== */
+
+/* Modal overlay (behind popup). The root element of the component. */
+.mm {
+	/* Hide modal from screenreaders and users. */
+	/* If you load your stylesheets asynchronously using at tool like loadCSS,
+	you'll want to inline this display:none rule as critical CSS */
+	display: none;
+
+	/* Overlay covers entire screen behind popup */
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	z-index: 100;
+	background-color: $dark-overlay-bg;
+
+	/* Fade-in overlay */
+	opacity: 0;
+}
+
+/* Modal is opening, opened, closing */
+.mm--visible {
+	display: block;
+}
+/* Fade-in overlay */
+.mm--opened {
+	opacity: 1;
+}
+
+/* Popup box (what you generally think of as the modal) */
+.mm__popup {
+	position: absolute;
+}
+/* Animate popup from target to center of screen */
+.mm__popup--opened {
+	top: 5%;
+	left: 5%;
+	width: 90%;
+	height: auto;
+	/* Contents should be scrollable if taller than the viewport */
+	max-height: 90%;
+	overflow: auto;
+}
+@media (min-width: 660px) {
+	.mm__popup--opened {
+		max-width: 600px;
+		left: 50%;
+		margin-left: -300px;
+	}	
+}
+
+/* Popup contents:
+	__content
+		__title
+		__close
+		...whatever else you want
+*/
+
+.mm__content {
+	/* Fade-in content after popup has opened */
+	opacity: 0;
+
+	/* Default visual styles. Override as needed! */
+	padding: 1em 2em 2em;
+}
+.mm__content--opened {
+	/* Fade-in content after popup has opened */
+	opacity: 1;
+}
+.mm__title {
+	text-align: center;
+}
