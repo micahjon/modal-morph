@@ -15,7 +15,7 @@
 	height: 100%;
 	width: 100%;
 	z-index: 100;
-	background-color: $dark-overlay-bg;
+	background-color: rgba(0,0,0,.6);
 
 	/* Fade-in overlay */
 	opacity: 0;
@@ -64,7 +64,7 @@
 	opacity: 0;
 
 	/* Default visual styles. Override as needed! */
-	padding: 1em 2em 2em;
+	padding: 2em;
 }
 .mm__content--opened {
 	/* Fade-in content after popup has opened */
