@@ -1,7 +1,7 @@
 /**
- * Transmodal: An accessible morphing modal library.
+ * Modal Morph: An accessible morphing modal library.
  * Usage:
- * 		ModalMorph('mm--contact', { trigger: yourButtonElement }).open();
+ * 		modalMorph('mm--contact', { trigger: yourButtonElement }).open();
  */
 
 import FLIP from './src/FLIP';
@@ -14,7 +14,7 @@ import createFocusTrap from 'focus-trap';
  * @param  {String/Function} options.bgColor    Background color of modal
  * @return {Object}                        		ModalMorph object
  */
-export default function Transmodal(modalId, options = {}) {
+export default function modalMorph(modalId, options = {}) {
 	// Modal id is required
 	const overlay = document.getElementById(modalId);
 	if (!overlay) throw new Error('A valid modal id must be provided.');
