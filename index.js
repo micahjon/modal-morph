@@ -74,7 +74,7 @@ export default function modalMorph(modalId, options = {}) {
 					element: modal.popup,
 					easing: easeIn,
 					delay: 50,
-					duration: 400,
+					duration: 350,
 				},
 				popup => {
 					popup.classList.add('mm__popup--opened');
@@ -82,35 +82,35 @@ export default function modalMorph(modalId, options = {}) {
 				}
 			);
 
+		/**
+		 * Prepare content for fade-in animation
+		 */
+		const fadeInContent = prepareFlip(
+			{
+				element: modal.content,
+				easing: easeIn,
+				delay: 150,
+				duration: 600,
+			},
+			content => content.classList.add('mm__content--opened')
+		);
+
 		fadeInOverlay.play();
 		morphInPopup.play();
+		fadeInContent.play();
 
-		/**
-		 * Fade in popup contents after popup animation completes
-		 */
-		afterFLIPs([fadeInOverlay, morphInPopup], () => {
-			const fadeInContent = prepareFlip(
-				{
-					element: modal.content,
-					easing: easeIn,
-					duration: 300,
-				},
-				content => content.classList.add('mm__content--opened')
-			);
-			fadeInContent.play();
+		afterFLIPs([fadeInOverlay, morphInPopup, fadeInContent], () => {
+			/**
+			 * Activate focus trap
+			 */
+			focusTrap.activate();
 
 			/**
-			 * Once content fades in, modal is ready to use
+			 * When focus trap deactivates, the modal will automatically
+			 * close (e.g. Esc key pressed, click outside modal).
+			 * Also deactivate (close) when a close button is pressed.
 			 */
-			afterFLIPs([fadeInContent], () => {
-				// Activate focus trap
-				focusTrap.activate();
-
-				// When focus trap deactivates, the modal will automatically
-				// close (e.g. Esc key pressed, click outside modal).
-				// Also deactivate when a close button is pressed.
-				modal.content.addEventListener('click', handleCloseButton);
-			});
+			modal.content.addEventListener('click', handleCloseButton);
 		});
 	}
 
